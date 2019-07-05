@@ -1,0 +1,34 @@
+{
+    "name": "PictureOfEvent",
+    "fields": [
+        {
+            "fieldName": "picDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "imgFile",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "eventOfPlateMill",
+            "otherEntityRelationshipName": "pictureOfEvent",
+            "relationshipName": "eventPM",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190705024122",
+    "entityTableName": "picture_of_event",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

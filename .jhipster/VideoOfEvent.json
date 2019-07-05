@@ -1,0 +1,34 @@
+{
+    "name": "VideoOfEvent",
+    "fields": [
+        {
+            "fieldName": "videoDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "videoFile",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "eventOfPlateMill",
+            "otherEntityRelationshipName": "videoOfEvent",
+            "relationshipName": "eventPM",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190705024123",
+    "entityTableName": "video_of_event",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

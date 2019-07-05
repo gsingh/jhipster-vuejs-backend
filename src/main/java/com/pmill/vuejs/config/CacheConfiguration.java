@@ -43,6 +43,20 @@ public class CacheConfiguration {
             createCache(cm, com.pmill.vuejs.domain.User.class.getName());
             createCache(cm, com.pmill.vuejs.domain.Authority.class.getName());
             createCache(cm, com.pmill.vuejs.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.pmill.vuejs.domain.Production.class.getName());
+            createCache(cm, com.pmill.vuejs.domain.EventOfPlateMill.class.getName());
+            createCache(cm, com.pmill.vuejs.domain.EventOfPlateMill.class.getName() + ".pictureOfEvents");
+            createCache(cm, com.pmill.vuejs.domain.EventOfPlateMill.class.getName() + ".videoOfEvents");
+            createCache(cm, com.pmill.vuejs.domain.PictureOfEvent.class.getName());
+            createCache(cm, com.pmill.vuejs.domain.VideoOfEvent.class.getName());
+            createCache(cm, com.pmill.vuejs.domain.ShiftManager.class.getName());
+            createCache(cm, com.pmill.vuejs.domain.ShiftManager.class.getName() + ".prods");
+            createCache(cm, com.pmill.vuejs.domain.ShiftManager.class.getName() + ".hpFinishes");
+            createCache(cm, com.pmill.vuejs.domain.ShiftManager.class.getName() + ".normaliseds");
+            createCache(cm, com.pmill.vuejs.domain.ShiftManager.class.getName() + ".shippings");
+            createCache(cm, com.pmill.vuejs.domain.HeavyPlateFinished.class.getName());
+            createCache(cm, com.pmill.vuejs.domain.Normalising.class.getName());
+            createCache(cm, com.pmill.vuejs.domain.Shipping.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

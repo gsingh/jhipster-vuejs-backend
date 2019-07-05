@@ -1,0 +1,42 @@
+{
+    "name": "EventOfPlateMill",
+    "fields": [
+        {
+            "fieldName": "eventDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "eventName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "pictureOfEvent",
+            "otherEntityRelationshipName": "eventPM",
+            "relationshipName": "pictureOfEvent"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "videoOfEvent",
+            "otherEntityRelationshipName": "eventPM",
+            "relationshipName": "videoOfEvent"
+        }
+    ],
+    "changelogDate": "20190705024121",
+    "entityTableName": "event_of_plate_mill",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

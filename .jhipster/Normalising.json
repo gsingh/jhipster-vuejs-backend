@@ -1,0 +1,46 @@
+{
+    "name": "Normalising",
+    "fields": [
+        {
+            "fieldName": "normalisingDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "shift",
+            "fieldType": "Shift",
+            "fieldValues": "A,B,C",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "noOfPlates",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "normalisedTonnage",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "shiftManager",
+            "otherEntityRelationshipName": "normalised",
+            "relationshipName": "manager",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190705024126",
+    "entityTableName": "normalising",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

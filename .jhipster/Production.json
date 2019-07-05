@@ -1,0 +1,46 @@
+{
+    "name": "Production",
+    "fields": [
+        {
+            "fieldName": "prodDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "shift",
+            "fieldType": "Shift",
+            "fieldValues": "A,B,C",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "noOfPlates",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "prodTonnage",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "shiftManager",
+            "otherEntityRelationshipName": "prod",
+            "relationshipName": "manager",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190705024120",
+    "entityTableName": "production",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

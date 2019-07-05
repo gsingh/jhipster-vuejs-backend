@@ -1,0 +1,61 @@
+{
+    "name": "ShiftManager",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "designation",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "mobileNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "production",
+            "otherEntityRelationshipName": "manager",
+            "relationshipName": "prod"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "heavyPlateFinished",
+            "otherEntityRelationshipName": "manager",
+            "relationshipName": "hpFinish"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "normalising",
+            "otherEntityRelationshipName": "manager",
+            "relationshipName": "normalised"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "shipping",
+            "otherEntityRelationshipName": "manager",
+            "relationshipName": "shipping"
+        }
+    ],
+    "changelogDate": "20190705024124",
+    "entityTableName": "shift_manager",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,46 @@
+{
+    "name": "HeavyPlateFinished",
+    "fields": [
+        {
+            "fieldName": "hPFinishedDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "shift",
+            "fieldType": "Shift",
+            "fieldValues": "A,B,C",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "noOfPlates",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "hPFinishedTonnage",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "shiftManager",
+            "otherEntityRelationshipName": "hpFinish",
+            "relationshipName": "manager",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190705024125",
+    "entityTableName": "heavy_plate_finished",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

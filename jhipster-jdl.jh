@@ -1,0 +1,72 @@
+entity Production {
+  prodDate LocalDate required
+  shift Shift required
+  noOfPlates Integer
+  prodTonnage Integer
+}
+
+entity EventOfPlateMill {
+eventDate LocalDate required
+eventName String required
+}
+
+entity PictureOfEvent {
+picDate LocalDate
+imgFile String required
+}
+
+entity VideoOfEvent {
+videoDate LocalDate
+videoFile String required
+}
+
+
+enum Shift {
+A,
+B,
+C
+}
+
+entity ShiftManager {
+name String required
+designation String required
+mobileNumber String required
+}
+
+entity HeavyPlateFinished {
+hPFinishedDate LocalDate required
+  shift Shift required
+  noOfPlates Integer
+  hPFinishedTonnage Integer
+}
+
+entity Normalising {
+normalisingDate LocalDate required
+  shift Shift required
+  noOfPlates Integer
+  normalisedTonnage Integer
+}
+
+entity Shipping{
+shippingDate LocalDate required
+  shift Shift required
+  noOfWagons Integer
+  noOfTrailers Integer
+  shippedTonnage Integer
+} 
+
+
+
+relationship OneToMany {
+ ShiftManager{prod} to Production{manager} 
+ ShiftManager{hpFinish} to HeavyPlateFinished{manager}
+ ShiftManager{normalised} to Normalising{manager}
+ ShiftManager{shipping} to Shipping{manager}
+ EventOfPlateMill{pictureOfEvent} to PictureOfEvent{eventPM}
+ EventOfPlateMill{videoOfEvent} to VideoOfEvent{eventPM}
+ }
+
+
+
+
+

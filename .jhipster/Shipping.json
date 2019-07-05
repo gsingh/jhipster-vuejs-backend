@@ -1,0 +1,50 @@
+{
+    "name": "Shipping",
+    "fields": [
+        {
+            "fieldName": "shippingDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "shift",
+            "fieldType": "Shift",
+            "fieldValues": "A,B,C",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "noOfWagons",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "noOfTrailers",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "shippedTonnage",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "shiftManager",
+            "otherEntityRelationshipName": "shipping",
+            "relationshipName": "manager",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190705024127",
+    "entityTableName": "shipping",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
