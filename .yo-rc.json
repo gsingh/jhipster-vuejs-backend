@@ -1,0 +1,34 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.pmill.vuejs"
+    },
+    "jhipsterVersion": "6.1.2",
+    "applicationType": "monolith",
+    "baseName": "pmill",
+    "packageName": "com.pmill.vuejs",
+    "packageFolder": "com/pmill/vuejs",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MWRlNGY4MTVlMWM1MjU5NmVhOWE3YzJmZDE1MzdiYjFhNDViNjk4YmZlMjQ2ZTllMzZjYjU0YmIyMjUyNTRiMmMyMzNiNmZmMGQxZGI0NzgxZDRhMmIxNzI2ZWJmZTViNmI3YTY3Yzc2OWQ3Nzk2NWE5Y2Y1MjNkZmEwZDM2NWI=",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "skipClient": true
+  }
+}
