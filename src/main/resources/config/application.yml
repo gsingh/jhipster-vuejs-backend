@@ -78,6 +78,12 @@ spring:
       naming:
         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 27MB
+      file-size-threshold: 2KB    
+      enabled: true
   messages:
     basename: i18n/messages
   main:
@@ -109,6 +115,7 @@ server:
 info:
   # Comma separated list of profiles that will trigger the ribbon to show
   display-ribbon-on-profiles: 'dev'
+
 
 # ===================================================================
 # JHipster specific properties
@@ -150,3 +157,5 @@ jhipster:
 # ===================================================================
 
 # application:
+file:
+  upload-dir: /gurmeet/uploads

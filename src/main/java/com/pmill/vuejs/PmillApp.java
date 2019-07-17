@@ -2,7 +2,7 @@ package com.pmill.vuejs;
 
 import com.pmill.vuejs.config.ApplicationProperties;
 import com.pmill.vuejs.config.DefaultProfileUtil;
-
+import com.pmill.vuejs.property.FileStorageProperties;
 import io.github.jhipster.config.JHipsterConstants;
 
 import org.apache.commons.lang3.StringUtils;
@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @SpringBootApplication
-@EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
+@EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class, FileStorageProperties.class})
 public class PmillApp implements InitializingBean {
 
     private static final Logger log = LoggerFactory.getLogger(PmillApp.class);

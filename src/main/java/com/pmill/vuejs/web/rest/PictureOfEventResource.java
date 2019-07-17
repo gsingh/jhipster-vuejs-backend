@@ -3,6 +3,8 @@ package com.pmill.vuejs.web.rest;
 import com.pmill.vuejs.domain.PictureOfEvent;
 import com.pmill.vuejs.repository.PictureOfEventRepository;
 import com.pmill.vuejs.web.rest.errors.BadRequestAlertException;
+import com.pmill.vuejs.service.FileStorageService;
+import com.pmill.vuejs.payload.UploadFileResponse;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -11,6 +13,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -35,6 +40,9 @@ public class PictureOfEventResource {
 
     private final PictureOfEventRepository pictureOfEventRepository;
 
+    @Autowired
+    private FileStorageService fileStorageService;
+
     public PictureOfEventResource(PictureOfEventRepository pictureOfEventRepository) {
         this.pictureOfEventRepository = pictureOfEventRepository;
     }
@@ -47,15 +55,27 @@ public class PictureOfEventResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/picture-of-events")
-    public ResponseEntity<PictureOfEvent> createPictureOfEvent(@Valid @RequestBody PictureOfEvent pictureOfEvent) throws URISyntaxException {
-        log.debug("REST request to save PictureOfEvent : {}", pictureOfEvent);
-        if (pictureOfEvent.getId() != null) {
-            throw new BadRequestAlertException("A new pictureOfEvent cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-        PictureOfEvent result = pictureOfEventRepository.save(pictureOfEvent);
-        return ResponseEntity.created(new URI("/api/picture-of-events/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
-            .body(result);
+    public UploadFileResponse createPictureOfEvent(@RequestParam("file") MultipartFile file) throws URISyntaxException {
+        // log.debug("REST request to save PictureOfEvent : {}", pictureOfEvent);
+        /* new code */
+        String fileName = fileStorageService.storeFile(file);
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/downloadFile/")
+                .path(fileName)
+                .toUriString();
+
+        return new UploadFileResponse(fileName, fileDownloadUri,
+                file.getContentType(), file.getSize());
+         
+        /* end */
+
+        // if (pictureOfEvent.getId() != null) {
+        //     throw new BadRequestAlertException("A new pictureOfEvent cannot already have an ID", ENTITY_NAME, "idexists");
+        // }
+        // PictureOfEvent result = pictureOfEventRepository.save(pictureOfEvent);
+        // return ResponseEntity.created(new URI("/api/picture-of-events/" + result.getId()))
+        //     .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+        //     .body(result);
     }
 
     /**

@@ -19,7 +19,14 @@ logging:
     io.github.jhipster: DEBUG
     com.pmill.vuejs: DEBUG
 
+    
 spring:
+  servlet:
+      multipart:
+        max-file-size: 25MB
+        max-request-size: 27MB
+        file-size-threshold: 2KB    
+        enabled: true
   profiles:
     active: dev
     include:
@@ -71,6 +78,8 @@ spring:
 
 server:
   port: 8080
+file:
+  upload-dir: /gurmeet/uploads
 
 # ===================================================================
 # JHipster specific properties
@@ -123,3 +132,4 @@ jhipster:
 # ===================================================================
 
 # application:
+  
