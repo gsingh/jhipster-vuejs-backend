@@ -5,6 +5,7 @@ import com.pmill.vuejs.repository.PictureOfEventRepository;
 import com.pmill.vuejs.web.rest.errors.BadRequestAlertException;
 import com.pmill.vuejs.service.FileStorageService;
 import com.pmill.vuejs.payload.UploadFileResponse;
+import com.pmill.vuejs.property.FileStorageProperties;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -42,8 +45,11 @@ public class PictureOfEventResource {
 
     @Autowired
     private FileStorageService fileStorageService;
+    private final Path fileStorageLocation;
 
-    public PictureOfEventResource(PictureOfEventRepository pictureOfEventRepository) {
+    public PictureOfEventResource(PictureOfEventRepository pictureOfEventRepository, FileStorageProperties fileStorageProperties) {
+        this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
+        .toAbsolutePath().normalize();
         this.pictureOfEventRepository = pictureOfEventRepository;
     }
 
@@ -55,27 +61,33 @@ public class PictureOfEventResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/picture-of-events")
-    public UploadFileResponse createPictureOfEvent(@RequestParam("file") MultipartFile file) throws URISyntaxException {
-        // log.debug("REST request to save PictureOfEvent : {}", pictureOfEvent);
+    public ResponseEntity<PictureOfEvent> createPictureOfEvent(@Valid @RequestBody PictureOfEvent pictureOfEvent, @RequestParam("file") MultipartFile file ) throws URISyntaxException {
+    // public UploadFileResponse createPictureOfEvent(@RequestParam("file") MultipartFile file) throws URISyntaxException {
+        log.debug("REST request to save PictureOfEvent : {}", pictureOfEvent);
         /* new code */
         String fileName = fileStorageService.storeFile(file);
-        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/downloadFile/")
-                .path(fileName)
-                .toUriString();
+        // String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+        //         .path("/downloadFile/")
+        //         .path(fileName)
+        //         .toUriString();
 
-        return new UploadFileResponse(fileName, fileDownloadUri,
-                file.getContentType(), file.getSize());
+        // return new UploadFileResponse(fileName, fileDownloadUri,
+        //         file.getContentType(), file.getSize());
+
+      
+        Path targetLocation = this.fileStorageLocation.resolve(fileName);
          
         /* end */
 
-        // if (pictureOfEvent.getId() != null) {
-        //     throw new BadRequestAlertException("A new pictureOfEvent cannot already have an ID", ENTITY_NAME, "idexists");
-        // }
-        // PictureOfEvent result = pictureOfEventRepository.save(pictureOfEvent);
-        // return ResponseEntity.created(new URI("/api/picture-of-events/" + result.getId()))
-        //     .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
-        //     .body(result);
+
+        if (pictureOfEvent.getId() != null) {
+            throw new BadRequestAlertException("A new pictureOfEvent cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        pictureOfEvent.setImgFile(targetLocation.toString());
+        PictureOfEvent result = pictureOfEventRepository.save(pictureOfEvent);
+        return ResponseEntity.created(new URI("/api/picture-of-events/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+            .body(result);
     }
 
     /**
