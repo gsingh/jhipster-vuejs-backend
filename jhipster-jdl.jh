@@ -12,11 +12,13 @@ eventName String required
 
 entity PictureOfEvent {
 picDate LocalDate
+imgType string 
 imgFile String required
 }
 
 entity VideoOfEvent {
 videoDate LocalDate
+videoType string
 videoFile String required
 }
 
@@ -58,12 +60,12 @@ shippingDate LocalDate required
 
 
 relationship OneToMany {
- ShiftManager{prod} to Production{manager} 
- ShiftManager{hpFinish} to HeavyPlateFinished{manager}
- ShiftManager{normalised} to Normalising{manager}
- ShiftManager{shipping} to Shipping{manager}
- EventOfPlateMill{pictureOfEvent} to PictureOfEvent{eventPM}
- EventOfPlateMill{videoOfEvent} to VideoOfEvent{eventPM}
+ ShiftManager{prod} to Production{manager(name) required} 
+ ShiftManager{hpFinish} to HeavyPlateFinished{manager(name) required}
+ ShiftManager{normalised} to Normalising{manager(name) required}
+ ShiftManager{shipping} to Shipping{manager(name) required}
+ EventOfPlateMill{pictureOfEvent} to PictureOfEvent{eventPM(eventName)}
+ EventOfPlateMill{videoOfEvent} to VideoOfEvent{eventPM(eventName)}
  }
 
 
